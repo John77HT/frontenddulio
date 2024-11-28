@@ -11,7 +11,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  /// Método para obtener todos los usuarios
+  // Método para obtener todos los usuarios
   fetchUser(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
@@ -35,4 +35,10 @@ export class UsuarioService {
   getUserById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+
+  // Método para obtener el último id_usuario
+getLastId(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/last-id`); // Asegúrate de que tu API tenga este endpoint
+}
+
 }
