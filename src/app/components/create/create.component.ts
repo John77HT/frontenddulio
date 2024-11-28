@@ -18,9 +18,9 @@ export class CreateComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private fb: FormBuilder) {
     // Inicializa el formulario con validaciones
     this.nuevoUsuarioForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      nombre: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
-      direccion: ['', [Validators.required, Validators.minLength(5)]],
+      direccion: ['', [Validators.required, Validators.minLength(1)]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]] // Se asegura que el teléfono tenga 10 dígitos
     });
   }
