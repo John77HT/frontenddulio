@@ -14,14 +14,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class CreateComponent implements OnInit {
   arrayUser: any[] = []; // Array para almacenar usuarios
   nuevoUsuarioForm: FormGroup;
+  showPassword: boolean = false; // Controla visibilidad de la contraseña
 
   constructor(private usuarioService: UsuarioService, private fb: FormBuilder) {
     // Inicializa el formulario con validaciones
     this.nuevoUsuarioForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(1)]],
-      email: ['', [Validators.required, Validators.email]],
-      direccion: ['', [Validators.required, Validators.minLength(1)]],
-      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]] // Se asegura que el teléfono tenga 10 dígitos
+      id_usuario: [{ value: '', disabled: true }], // No necesitas asignar ID manualmente
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      apellido: ['', [Validators.required, Validators.minLength(3)]],
+      correo: ['', [Validators.required, Validators.email]],
+      edad: ['', [Validators.required, Validators.min(1)]],
+      ciudad: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -44,13 +48,14 @@ export class CreateComponent implements OnInit {
   // Método para crear un nuevo usuario
   createUser(): void {
     if (this.nuevoUsuarioForm.invalid) {
-      alert('Por favor, completa todos los campos correctamente.');
+      alert('Por favor completa todos los campos correctamente.');
       return;
     }
 
-    // El nuevo usuario no necesita asignar un id_usuario, lo maneja el backend
+    // Elimina la lógica de obtener el último ID y crea el usuario directamente
     const nuevoUsuario = {
       ...this.nuevoUsuarioForm.value,
+      // No se asigna un id_usuario, lo maneja el backend
     };
 
     this.usuarioService.postUser(nuevoUsuario).subscribe(
@@ -65,5 +70,10 @@ export class CreateComponent implements OnInit {
         alert('Error al crear usuario. Por favor, inténtalo de nuevo.');
       }
     );
+  }
+
+  // Alterna la visibilidad de la contraseña
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
