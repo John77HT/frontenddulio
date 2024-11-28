@@ -43,7 +43,7 @@
 
 .user-table th {
   background-color: #1a1a1a;
-  color: #f8c1d9;
+  color: hsl(215, 80%, 86%);
   text-transform: uppercase;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .btn-delete {
-  background-color: #f08080; /* Rojo claro */
+  background-color: hsl(222, 79%, 72%); /* Rojo claro */
   color: #ffffff;
 }
 

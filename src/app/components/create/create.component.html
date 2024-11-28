@@ -4,47 +4,27 @@
         <table>
             <tbody>
                 <tr>
-                    <td><label for="id"><i class="fas fa-id-card"></i> ID:</label></td>
-                    <td><input type="number" id="id" formControlName="id_usuario" required readonly class="id-input">
-                    </td>
-                </tr>
-
-                <tr>
                     <td><label for="nombre"><i class="fas fa-user"></i> Nombre:</label></td>
                     <td><input type="text" id="nombre" formControlName="nombre" required></td>
                 </tr>
 
                 <tr>
-                    <td><label for="apellido"><i class="fas fa-user"></i> Apellido:</label></td>
-                    <td><input type="text" id="apellido" formControlName="apellido" required></td>
+                    <td><label for="email"><i class="fas fa-envelope"></i> Correo Electrónico:</label></td>
+                    <td><input type="email" id="email" formControlName="email" required></td>
                 </tr>
 
                 <tr>
-                    <td><label for="correo"><i class="fas fa-envelope"></i> Correo Electrónico:</label></td>
-                    <td><input type="email" id="correo" formControlName="correo" required></td>
+                    <td><label for="direccion"><i class="fas fa-map-marker-alt"></i> Dirección:</label></td>
+                    <td><input type="text" id="direccion" formControlName="direccion" required></td>
                 </tr>
+
                 <tr>
-                    <td><label for="edad"><i class="fas fa-calendar-alt"></i> Edad:</label></td>
-                    <td><input type="number" id="edad" formControlName="edad" required></td>
+                    <td><label for="telefono"><i class="fas fa-phone"></i> Teléfono:</label></td>
+                    <td><input type="text" id="telefono" formControlName="telefono" required></td>
                 </tr>
+
                 <tr>
-                    <td><label for="ciudad"><i class="fas fa-map-marker-alt"></i> Ciudad:</label></td>
-                    <td><input type="text" id="ciudad" formControlName="ciudad" required></td>
-                </tr>
-                <tr>
-                    <td><label for="password"><i class="fas fa-lock"></i> Contraseña:</label></td>
-                    <td>
-                        <div class="password-container" style="display: flex; align-items: center;">
-                            <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
-                                required style="margin-right: 8px;">
-                            <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
-                                (click)="togglePasswordVisibility()" style="cursor: pointer;">
-                            </i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"><button type="submit"><i class="fas fa-user-plus"></i> Registra</button></td>
+                    <td colspan="2"><button type="submit"><i class="fas fa-user-plus"></i> Registrar</button></td>
                 </tr>
             </tbody>
         </table>

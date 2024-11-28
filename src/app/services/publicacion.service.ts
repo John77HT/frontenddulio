@@ -7,32 +7,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PublicacionService {
-  private apiUrl = 'https://backendjany.onrender.com/api/mascotas'; // Cambia la URL según tu configuración
+  private apiUrl = 'https://backenddulio.onrender.com/productos'; // Cambia la URL según tu configuración
 
   constructor(private http: HttpClient) { }
 
-  // Método para obtener todas las mascotas
-  fetchMascotas(): Observable<any[]> {
+  // Método para obtener todos los productos
+  fetchProductos(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // Método para crear una nueva mascota
-  postMascota(mascota: any): Observable<any> {
-    return this.http.post(this.apiUrl, mascota);
+  // Método para crear un nuevo producto
+  postProducto(producto: any): Observable<any> {
+    return this.http.post(this.apiUrl, producto);
   }
 
-  // Método para actualizar una mascota
-  updateMascota(id: string, mascota: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, mascota);
+  // Método para actualizar un producto
+  updateProducto(id: string, producto: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, producto);
   }
 
-  // Método para eliminar una mascota
-  deleteMascota(id: string): Observable<any> {
+  // Método para eliminar un producto
+  deleteProducto(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-  // Método para obtener una mascota por ID
-  getMascotaById(id: string): Observable<any> {
+  // Método para obtener un producto por ID
+  getProductoById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 }

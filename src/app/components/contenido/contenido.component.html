@@ -1,29 +1,25 @@
 <div class="container">
-  <h2 class="title">Mascotas</h2>
+  <h2 class="title">Productos</h2>
   <div class="table-wrapper">
     <table class="user-table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Nombre</th>
-          <th>Edad</th>
-          <th>Raza</th>
-          <th>Especie</th>
+          <th>Descripción</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of arrayMascotas">
-          <th>{{ item.id_mascota }}</th>
+        <tr *ngFor="let item of arrayProductos">
+          <th>{{ item.id_producto }}</th>
           <td>{{ item.nombre }}</td>
-          <td>{{ item.edad }}</td>
-          <td>{{ item.raza }}</td>
-          <td>{{ item.especie }}</td>
+          <td>{{ item.descripcion }}</td>
           <td>
-            <button class="btn-edit" (click)="editarMascota(item)">
+            <button class="btn-edit" (click)="editarProducto(item)">
               <i class="fas fa-edit"></i> Editar
             </button>
-            <button class="btn-delete" (click)="deleteMascota(item.id_mascota)">
+            <button class="btn-delete" (click)="deleteProducto(item.id_producto)">
               <i class="fas fa-trash-alt"></i> Eliminar
             </button>
           </td>
@@ -32,27 +28,21 @@
     </table>
 
     <button class="btn-create" (click)="formVisible = true">
-      <i class="fas fa-plus"></i> Crear Mascota
+      <i class="fas fa-plus"></i> Crear Producto
     </button>
 
-    <form id="formularioEdicion" *ngIf="formVisible" [formGroup]="nuevoMascotaForm" (ngSubmit)="mascotaEnEdicion ? actualizarMascota() : crearMascota()">
-      <label for="id_mascota">ID:</label>
-      <input id="id_mascota" formControlName="id_mascota" readonly>
+    <form id="formularioEdicion" *ngIf="formVisible" [formGroup]="nuevoProductoForm" (ngSubmit)="productoEnEdicion ? actualizarProducto() : crearProducto()">
+      <label for="id_producto">ID:</label>
+      <input id="id_producto" formControlName="id_producto" readonly>
 
       <label for="nombre">Nombre:</label>
       <input id="nombre" formControlName="nombre" required>
 
-      <label for="edad">Edad:</label>
-      <input id="edad" formControlName="edad" required>
-
-      <label for="raza">Raza:</label>
-      <input id="raza" formControlName="raza" required>
-
-      <label for="especie">Especie:</label>
-      <input id="especie" formControlName="especie" required>
+      <label for="descripcion">Descripción:</label>
+      <input id="descripcion" formControlName="descripcion" required>
 
       <button type="submit">
-        <i class="fas fa-check"></i> {{ mascotaEnEdicion ? 'Actualizar' : 'Crear' }} Mascota
+        <i class="fas fa-check"></i> {{ productoEnEdicion ? 'Actualizar' : 'Crear' }} Producto
       </button>
       <button type="button" (click)="cancelarEdicion()">
         <i class="fas fa-times"></i> Cancelar

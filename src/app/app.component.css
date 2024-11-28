@@ -1,82 +1,89 @@
+/* Estilos generales para la página */
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: hsla(230, 65%, 51%, 0.646); /* Fondo de un tono azul suave */
+  margin: 0;
+  text-align: center;
+}
+
 /* Estilos para la barra de navegación */
 nav {
-  background-color: #2c3e50;
-  /* Color de fondo oscuro */
-  padding: 10px 0;
-  /* Espaciado vertical */
-  width: 100%;
-  /* Asegurarse de que ocupe todo el ancho */
-  position: fixed;
-  /* Mantener la barra en la parte superior */
-  top: 0;
-  /* Alinear al borde superior */
-  left: 0;
-  /* Alinear al borde izquierdo */
-  z-index: 1000;
-  /* Asegurar que esté por encima de otros elementos */
-}
-
-nav ul {
-  list-style-type: none;
-  /* Eliminar los puntos de la lista */
-  padding: 0;
-  /* Eliminar padding */
-  margin: 0;
-  /* Eliminar margin */
   display: flex;
-  /* Flexbox para disposición horizontal */
-  justify-content: space-around;
-  /* Espacio igual entre elementos */
-}
-
-nav li {
-  flex: 1;
-  /* Cada elemento de la lista ocupa el mismo espacio */
-}
-
-nav a {
-  color: white;
-  /* Color de texto blanco */
-  text-decoration: none;
-  /* Sin subrayado */
-  font-size: 16px;
-  /* Tamaño de fuente */
-  display: flex;
-  /* Flexbox para centrar el texto */
-  align-items: center;
-  /* Alinear verticalmente */
   justify-content: center;
-  /* Alinear horizontalmente */
-  padding: 10px;
-  /* Espaciado interno */
-  transition: background-color 0.3s;
-  /* Transición para el efecto hover */
+  background-color: #4c6ef5; /* Azul más suave para el fondo de la barra */
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
+/* Estilos para la lista de navegación */
+nav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none; /* Eliminar los puntos de la lista */
+}
+
+/* Espaciado entre elementos de la lista */
+nav li {
+  list-style: none;
+  margin: 0 20px;
+}
+
+/* Estilos de los enlaces para parecer botones */
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  background-color: #ffcc00; /* Amarillo brillante */
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease, transform 0.2s;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(255, 204, 0, 0.5);
+}
+
+/* Efecto hover en los enlaces */
 nav a:hover {
-  background-color: hsl(212, 38%, 8%);
-  /* Color de fondo al pasar el cursor */
+  background-color: #00ccff; /* Azul celeste brillante */
+  transform: translateY(-2px); /* Efecto de elevación */
+  box-shadow: 0 6px 12px rgba(0, 204, 255, 0.4);
+}
+
+/* Efecto de enfoque para accesibilidad */
+nav a:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
 }
 
 /* Espaciado para el contenido principal para evitar que quede oculto detrás de la barra de navegación */
 router-outlet {
-  margin-top: 60px;
-  /* Ajustar según la altura de la barra de navegación */
+  margin-top: 100px; /* Ajustado para considerar el nuevo alto de la barra */
 }
 
 /* Responsivo: Asegura que la barra se vea bien en pantallas pequeñas */
 @media (max-width: 768px) {
   nav ul {
-      flex-direction: column;
-      /* Cambiar a disposición vertical en pantallas pequeñas */
-      align-items: center;
-      /* Centrar los elementos en la columna */
+    flex-direction: column; /* Cambiar a disposición vertical en pantallas pequeñas */
+    align-items: center; /* Centrar los elementos en la columna */
   }
 
   nav a {
-      font-size: 14px;
-      /* Tamaño de fuente más pequeño */
-      padding: 8px;
-      /* Espaciado interno ajustado */
+    font-size: 16px; /* Tamaño de fuente ajustado */
+    padding: 10px 20px; /* Espaciado interno ajustado */
   }
 }

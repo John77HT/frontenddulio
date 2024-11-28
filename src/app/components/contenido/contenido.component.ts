@@ -11,17 +11,16 @@ import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
   styleUrl: './contenido.component.css'
 })
 export class ContenidoComponent implements OnInit {
-  arrayMascotas: any[] = [];
-  mascotaEnEdicion: any = null;
-  nuevoMascotaForm: FormGroup; 
+  arrayProductos: any[] = [];
+  productoEnEdicion: any = null;
+  nuevoProductoForm: FormGroup; 
   formVisible: boolean = false;
+
   constructor(private publicacionService: PublicacionService, private fb: FormBuilder) {
-    this.nuevoMascotaForm = this.fb.group({
-      id_mascota: [{ value: '', disabled: true }],
+    this.nuevoProductoForm = this.fb.group({
+      id_producto: [{ value: '', disabled: true }],
       nombre: [''],
-      edad: [''],
-      raza: [''],
-      especie: ['']
+      descripcion: ['']
     });
   }
 
@@ -30,30 +29,30 @@ export class ContenidoComponent implements OnInit {
   }
 
   fetch(): void {
-    this.publicacionService.fetchMascotas().subscribe(result => {
-      this.arrayMascotas = result;
+    this.publicacionService.fetchProductos().subscribe(result => {
+      this.arrayProductos = result;
     });
   }
 
-  crearMascota(): void {
-    const nuevaMascota = this.nuevoMascotaForm.value;
-    this.publicacionService.postMascota(nuevaMascota).subscribe(
+  crearProducto(): void {
+    const nuevoProducto = this.nuevoProductoForm.value;
+    this.publicacionService.postProducto(nuevoProducto).subscribe(
       (result) => {
-        this.arrayMascotas.push(result);
-        this.nuevoMascotaForm.reset();
-        alert('Mascota creada con éxito.');
+        this.arrayProductos.push(result);
+        this.nuevoProductoForm.reset();
+        alert('Producto creado con éxito.');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       (error) => {
-        console.error('Error al crear mascota:', error);
-        alert('Error al crear la mascota.');
+        console.error('Error al crear producto:', error);
+        alert('Error al crear el producto.');
       }
     );
   }
 
-  editarMascota(mascota: any): void {
-    this.mascotaEnEdicion = mascota;
-    this.nuevoMascotaForm.patchValue(mascota);
+  editarProducto(producto: any): void {
+    this.productoEnEdicion = producto;
+    this.nuevoProductoForm.patchValue(producto);
     this.formVisible = true;
 
     setTimeout(() => {
@@ -64,45 +63,45 @@ export class ContenidoComponent implements OnInit {
     }, 0);
   }
 
-  actualizarMascota(): void {
-    const id = this.nuevoMascotaForm.get('id_mascota')?.value;
-    const mascotaActualizada = this.nuevoMascotaForm.value;
+  actualizarProducto(): void {
+    const id = this.nuevoProductoForm.get('id_producto')?.value;
+    const productoActualizado = this.nuevoProductoForm.value;
 
-    this.publicacionService.updateMascota(id, mascotaActualizada).subscribe(
+    this.publicacionService.updateProducto(id, productoActualizado).subscribe(
       (result) => {
-        const index = this.arrayMascotas.findIndex(m => m.id_mascota === id);
+        const index = this.arrayProductos.findIndex(p => p.id_producto === id);
         if (index !== -1) {
-          this.arrayMascotas[index] = result;
+          this.arrayProductos[index] = result;
         }
         this.cancelarEdicion();
-        alert('Mascota actualizada con éxito.');
+        alert('Producto actualizado con éxito.');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       (error) => {
-        console.error('Error actualizando mascota:', error);
-        alert('Error al actualizar la mascota.');
+        console.error('Error actualizando producto:', error);
+        alert('Error al actualizar el producto.');
       }
     );
   }
 
-  deleteMascota(id_mascota: string): void {
-    if (confirm('¿Estás seguro de que deseas eliminar esta mascota?')) {
-      this.publicacionService.deleteMascota(id_mascota).subscribe(
+  deleteProducto(id_producto: string): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      this.publicacionService.deleteProducto(id_producto).subscribe(
         () => {
-          this.arrayMascotas = this.arrayMascotas.filter(m => m.id_mascota !== id_mascota);
-          alert('Mascota eliminada con éxito.');
+          this.arrayProductos = this.arrayProductos.filter(p => p.id_producto !== id_producto);
+          alert('Producto eliminado con éxito.');
         },
         error => {
-          console.error('Error al eliminar la mascota:', error);
-          alert('Error al eliminar la mascota. Por favor, intenta de nuevo.');
+          console.error('Error al eliminar el producto:', error);
+          alert('Error al eliminar el producto. Por favor, intenta de nuevo.');
         }
       );
     }
   }
 
   cancelarEdicion(): void {
-    this.mascotaEnEdicion = null;
-    this.nuevoMascotaForm.reset();
+    this.productoEnEdicion = null;
+    this.nuevoProductoForm.reset();
     this.formVisible = false;
   }
 }
